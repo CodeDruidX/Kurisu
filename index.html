@@ -12,7 +12,7 @@ body {background-color: #000000;}
 <script src="https://cdn.jsdelivr.net/npm/pixi-live2d-display/dist/index.min.js"></script>
 <h2>Готово! (crtl+F5 для очистки кэша и повторного скачивания)</h2>
 <h1>На телефоне PIXI перехватывает свайпы, так что двигать страницу можно только за эти жёлтые строки-заголовки</h1>
-<h3>Потом вставим этот canvas в свой фрейм и будет нам счастье. Сейчас она просто непрерывно флексит всеми анимациями)</h3>
+<h3>Потом вставим этот canvas в свой фрейм и будет нам счастье. Сейчас она просто непрерывно флексит всеми анимациями и следит за мышью)</h3>
 
 <canvas id=canvas></canvas>
 
@@ -31,11 +31,11 @@ const cubism4Model =
     resizeTo: window
   });
   
-  //Костыль чтоб рендерить фулл тело (двойную высоту от экрана). Модель в полном разрешениии больше экрана моего мальенкого ноутбука)
-  app.renderer.resize(window.innerWidth, window.innerHeight*2);
+  //Костыль чтоб рендерить фулл тело (тройную высоту от экрана). Модель в полном разрешениии больше экрана моего мальенкого ноутбука)
+  app.renderer.resize(window.innerWidth*2, window.innerHeight*3);
   
   // Авто-ресайз PIXI рендерера, если окно менянет размер (потом уберём, когда встроим Live2D в наш новый фрейм)
-  window.onresize = function(){app.renderer.resize(window.innerWidth, window.innerHeight*2);} 
+  window.onresize = function(){app.renderer.resize(window.innerWidth*2, window.innerHeight*3);} 
   
   
   const model4 = await PIXI.live2d.Live2DModel.from(cubism4Model);
