@@ -1,8 +1,16 @@
+<meta charset="UTF-8" />
+<style>
+h1,h2,h3,h4,p { color: #f9a825; font-family: 'segoe ui';}
+p {color:#aecccd}
+body {background-color: #000000;}
+</style>
+
+<h1>Скачивание live2dcore и PIXI renderer</h1>
 <script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/dylanNew/live2d/webgl/Live2D/lib/live2d.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pixi.js@6.5.2/dist/browser/pixi.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pixi-live2d-display/dist/index.min.js"></script>
-
+<h2>Готово! (crtl+F5 для очистки кэша и повторного скачивания)</h2>
 
 
 
@@ -12,6 +20,7 @@
 
 
 <script>
+// Путь до файла. Он Должен там быть)
 const cubism4Model =
   "Christina/Christina.model3.json";
 
@@ -21,8 +30,14 @@ const cubism4Model =
     autoStart: true,
     resizeTo: window
   });
-
-
+  
+  //Костыль чтоб рендерить фулл тело (двойную высоту от экрана). Модель в полном разрешениии больше экрана моего мальенкого ноутбука)
+  app.renderer.resize(window.innerWidth, window.innerHeight*2);
+  
+  // Авто-ресайз PIXI рендерера, если окно менянет размер (потом уберём, когда встроим Live2D в наш новый фрейм)
+  window.onresize = function(){app.renderer.resize(window.innerWidth, window.innerHeight*2);} 
+  
+  
   const model4 = await PIXI.live2d.Live2DModel.from(cubism4Model);
 
   window.model = model4
@@ -30,7 +45,7 @@ const cubism4Model =
   
   //model4.scale.set(0.25);
 
-  model4.x = 300;
+  model4.x = 0;
 })();
 </script>
 
